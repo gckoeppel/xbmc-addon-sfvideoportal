@@ -129,14 +129,8 @@ def getJSONForId( id):
 
 
 def getVideoFromJSON( json):
-    streams = json["streaming_urls"]
-    sortedstreams = sorted( streams, key=lambda el: int(el["bitrate"]))
-
-    quality = int(settings.getSetting( id="quality"))
-    if (quality >= len(sortedstreams)):
-        quality = len(sortedstreams)-1;
-    
-    return sortedstreams[ quality]["url"] + " swfvfy=true swfurl=" + FLASH_PLAYER
+    link = json["playlists"]["playlist"][0]["url"]
+    return link
 
 def getThumbnailForId( id):
     thumb = BASE_URL + "webservice/cvis/videogroup/thumbnail/" + id
